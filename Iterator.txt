@@ -1,0 +1,27 @@
+package com.Iterator删除元素;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = new ArrayList<>();
+        list.add("Hello");
+        list.add("Hello");
+        list.add("B");
+        list.add("Bit");
+        list.add("Bit");
+        Iterator<String> iterable = list.iterator(); //实例化Iterator对象
+        while(iterable.hasNext()){
+            String str = iterable.next();
+            if(str.equals("B")){
+                // 使用集合提供的remove()方法，则会产生ConcurrentModificationException    list.remove("B") ;
+                // 使用Iterator的remove方法则不会产生异常
+                iterable.remove();
+                continue;
+            }
+            System.out.println(str);
+        }
+    }
+}
